@@ -20,6 +20,7 @@ Axios.interceptors.request.use(config=>{
     console.log(config.data)
   }
   if(localStorage.getItem("token")){
+    console.log(localStorage.getItem('token'))
     config.headers.token=localStorage.getItem("token");
   }
   if(sessionStorage.getItem("token")){
@@ -36,6 +37,7 @@ Axios.interceptors.request.use(config=>{
 Axios.interceptors.response.use(
   res=>{
     console.log("触发响应拦截器...")
+    console.log(res)
     if(res.data.meta.status==403){
       localStorage.removeItem("token");
       sessionStorage.removeItem("token");
