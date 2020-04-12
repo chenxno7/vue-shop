@@ -48,7 +48,8 @@ Axios.interceptors.response.use(
       store.commit("setIslogin",false);
       store.commit("setUname","");
       alert(res.data.meta.msg+" 请先登录 !");
-    }else if(res.data.data.token){
+    }else if(res.data.data){
+      if(res.data.data.token){
       console.log('token拿到了')
       store.commit("setUname",res.data.data.username);
       store.commit("setIslogin",true);
@@ -57,6 +58,7 @@ Axios.interceptors.response.use(
       // }else{
       //   sessionStorage.setItem("token",res.data.token);
       // }
+      }
     }
     return res;
   },
