@@ -5,6 +5,7 @@ import store from './store'
 import ElementUi from 'element-ui'
 import axios from 'axios'
 import qs from 'qs'
+import myBread from '@/components/custom/myBread.vue'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/reset.css'
@@ -67,6 +68,8 @@ Axios.interceptors.response.use(
 Vue.prototype.axios=Axios;
 Vue.use(ElementUi)
 Vue.config.productionTip = false
+
+Vue.component('my-bread',myBread)
 
 new Vue({
   router,
