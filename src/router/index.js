@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '@/components/Login/Login.vue'
 import Users from '@/components/Users/Users.vue'
+import Rights from '@/components/Rights/Rights.vue'
+import SetRole from '@/components/Rights/SetRole'
 
 Vue.use(VueRouter)
 
@@ -12,7 +14,9 @@ Vue.use(VueRouter)
     name: 'Home',
     component: Home,
     children:[
-      {name:"users",path:'/users',component:Users}
+      {name:"users",path:'/users',component:Users},
+      {name:"rights",path:'/rights',component:Rights},
+      {name:"setrole",path:'/setrole',component:SetRole}
     ]
   },
   {

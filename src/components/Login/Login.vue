@@ -24,7 +24,7 @@ export default {
     },
     methods:{
         async login(){
-            console.log(this.formData)
+            // console.log(this.formData)
             const res=await this.axios.post('login',this.formData);
             if(res.data.meta.status==200){
                 this.$message({
@@ -33,7 +33,7 @@ export default {
                 })
                 this.$router.push('/')
             }
-            console.log(res)
+            // console.log(res)
         }
     }
 }
