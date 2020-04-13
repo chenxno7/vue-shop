@@ -6,6 +6,7 @@ import ElementUi from 'element-ui'
 import axios from 'axios'
 import qs from 'qs'
 import myBread from '@/components/custom/myBread.vue'
+import moment from 'moment'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/reset.css'
@@ -73,6 +74,9 @@ Vue.filter('setLevel',val=>{
   else if(val==1) level='二级'
   else if(val==2) level='三级'
   return level
+});
+Vue.filter('date',(val)=>{
+  return moment(val).format("YYYY-MM-DD,HH:mm:ss")
 })
 Vue.prototype.axios=Axios;
 Vue.use(ElementUi)

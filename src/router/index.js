@@ -5,6 +5,9 @@ import Login from '@/components/Login/Login.vue'
 import Users from '@/components/Users/Users.vue'
 import Rights from '@/components/Rights/Rights.vue'
 import SetRole from '@/components/Rights/SetRole'
+import Goods from '@/components/goods/goods'
+import Categories from '@/components/goods/categories'
+import Params from '@/components/goods/params'
 import { Message } from 'element-ui'
 
 Vue.use(VueRouter)
@@ -17,7 +20,10 @@ Vue.use(VueRouter)
     children:[
       {name:"users",path:'/users',component:Users},
       {name:"rights",path:'/rights',component:Rights},
-      {name:"roles",path:'/roles',component:SetRole}
+      {name:"roles",path:'/roles',component:SetRole},
+      {name:"goods",path:'/goods',component:Goods},
+      {name:"params",path:'/params',component:Params},
+      {name:"categories",path:'/categories',component:Categories},
     ]
   },
   {
