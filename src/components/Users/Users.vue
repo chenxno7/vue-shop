@@ -1,5 +1,5 @@
 <template>
-<el-container>
+<el-container v-if="isShow">
     <!-- 用户组件头部 -->
     <el-header>
         <my-bread :level1="'用户管理'" :level2="'用户列表'"></my-bread>
@@ -121,7 +121,8 @@ export default {
             currentUser:"",
             currentUserId:'',
             currentRoleid:'',
-            roles:[]
+            roles:[],
+            isShow:true
         }
     },
     mounted() {
@@ -129,6 +130,12 @@ export default {
         this.getRoles();
     },
     methods: {
+        reload(){
+            this.isShow=false;
+            this.$nextTick(()=>{
+                this.isShow=true
+            })
+        },
         async editUser(id){
             // console.log(this.form)
             const res=await this.axios.put(`users/${id}`,this.form);
@@ -140,7 +147,7 @@ export default {
                 });
                 this.getList(this.query,this.pagenum,this.pagesize)
             }
-            console.log(res)
+            // console.log(res)
         },
         async setRole(id,rid){
             // rid=parseInt(rid)
@@ -152,7 +159,7 @@ export default {
                 });
                 this.dialogFormVisibleRole=false;
             }
-            console.log(res)
+            // console.log(res)
         },
         searchUser(){
             this.getList(this.query,this.pagenum,this.pagesize);  
@@ -181,7 +188,8 @@ export default {
                     type: 'warning'
                 });
                 await this.axios.delete(`users/${id}`);
-                await this.getList(this.pagenum, this.pagesize)
+                this.reload();
+                // await this.getList(this.pagenum, this.pagesize)
                 // console.log(deleteRes)
                 this.$message({
                     type: "success",
@@ -223,7 +231,8 @@ export default {
         async AddUser() {
             const res = await this.axios.post('users', this.form);
             this.dialogFormVisibleAdd = false;
-            this.getList(this.pagenum, this.pagesize)
+            // this.getList(this.pagenum, this.pagesize);
+            this.reload()
         },
         handleSizeChange() {
             // console.log(this.pagesize)

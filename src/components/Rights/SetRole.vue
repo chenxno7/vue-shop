@@ -60,18 +60,18 @@
                             </el-form-item>
                         </el-form>
                         <div slot="footer" class="dialog-footer">
-                            <el-button @click="dialogFormVisibleRole = false">取 消</el-button>
+                            <el-button @click="dialogVisibleRole = false">取 消</el-button>
                             <el-button type="primary" @click="editRole(currentId,form.rname,form.rdesc)">确 定</el-button>
                         </div>
                     </el-dialog>
                     <!-- 编辑角色权限 -->
                     <el-button circle type="success" icon="el-icon-check" @click="showRightsForm(scope.row.id)"></el-button>
                     <el-dialog title="提示" :visible.sync="dialogVisibleRights" width="50%">
-                        <el-tree :data="authData" show-checkbox node-key="id" :props="defaultProps" :default-checked-keys="authChecked">
+                        <el-tree :data="authData" show-checkbox node-key="id" :props="defaultProps" :default-checked-keys="authChecked" ref="tree">
                         </el-tree>
                         <span slot="footer" class="dialog-footer">
                             <el-button @click="dialogVisibleRights = false">取 消</el-button>
-                            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                            <el-button type="primary" @click="setRights">确 定</el-button>
                         </span>
                     </el-dialog>
                     <!-- 删除角色 -->
@@ -105,6 +105,21 @@ export default {
         }
     },
     methods: {
+        async setRights(){
+            let rids=this.$refs.tree.getCheckedKeys().join(',');
+            // console.log(rids)
+            const res = await this.axios.post(`roles/${this.currentId}/rights`,{rids})
+            // console.log(this.$refs.tree.getCheckedKeys())
+            if(res.data.meta.status==200){
+                this.$message({
+                    type:"success",
+                    message:"角色权限授予成功"
+                });
+                this.dialogVisibleRights=false;
+                this.getRoles();
+            }
+            console.log(res)
+        },
         async getRights(){
             const res=await this.axios.get('rights/tree');
             this.authData=res.data.data;
@@ -156,6 +171,7 @@ export default {
             this.dialogVisibleRole = true;
         },
         showRightsForm(id) {
+            this.currentId=id;
             let arr=[];
             this.tableData.forEach(item => {
                 if (item.id == id) {

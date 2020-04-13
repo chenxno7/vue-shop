@@ -8,21 +8,21 @@
     <el-container class="content">
         <!-- 侧边导航栏 -->
         <el-aside width="300px" class="aside">
-            <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" router active-text-color="#ffd04b">
+            <el-menu unique-opened default-active="2" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" router active-text-color="#ffd04b">
                 <!-- 用户管理 -->
-                <el-submenu index="1">
+                <el-submenu :index="menu.path" v-for="(menu,i) of menus" :key="i">
                     <template slot="title">
                         <i class="el-icon-menu"></i>
-                        <span>用户管理</span>
+                        <span>{{menu.authName}}</span>
                     </template>
-                    <el-menu-item index="users">
+                    <el-menu-item :index="submenu.path" v-for="(submenu,i) of menu.children" :key="i">
                       <template slot="title">
                         <i class="el-icon-location"></i>
-                        <span>用户列表</span>
+                        <span>{{submenu.authName}}</span>
                       </template>
                     </el-menu-item>
                 </el-submenu>
-                <!-- 权限管理 -->
+                <!-- 权限管理
                 <el-submenu index="2">
                     <template slot="title">
                         <i class="el-icon-menu"></i>
@@ -41,7 +41,7 @@
                     </template>
                     </el-menu-item>
                 </el-submenu>
-                <!-- 商品管理 -->
+                商品管理
                 <el-submenu index="3">
                     <template slot="title">
                         <i class="el-icon-menu"></i>
@@ -60,7 +60,7 @@
                     </template>
                     </el-menu-item>
                 </el-submenu>
-                <!-- 订单管理 -->
+                订单管理
                 <el-submenu index="4">
                     <template slot="title">
                         <i class="el-icon-menu"></i>
@@ -73,7 +73,7 @@
                     </template>
                     </el-menu-item>
                 </el-submenu>
-                <!-- 数据统计 -->
+                数据统计
                 <el-submenu index="5">
                     <template slot="title">
                         <i class="el-icon-menu"></i>
@@ -85,7 +85,7 @@
                         <span>数据报表</span>
                     </template>
                     </el-menu-item>
-                </el-submenu>
+                </el-submenu> -->
                 
             </el-menu>
         </el-aside>
@@ -104,19 +104,27 @@ export default {
     name: 'Home',
     data() {
         return {
-
+            menus:[]
         }
     },
     methods: {
+        async getMenus(){
+            const res=await this.axios.get('menus');
+            this.menus=res.data.data;
+            console.log(this.menus)
+        },
         signOut() {
             localStorage.removeItem('token');
             this.$router.push('/login')
         }
     },
-    beforeCreate() {
-        if (!(localStorage.getItem('token') || sessionStorage.getItem('token'))) {
-            this.$router.push('/login')
-        }
+    // beforeCreate() {
+    //     if (!(localStorage.getItem('token') || sessionStorage.getItem('token'))) {
+    //         this.$router.push('/login')
+    //     }
+    // },
+    mounted(){
+        this.getMenus()
     }
 }
 </script>
