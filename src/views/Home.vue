@@ -111,7 +111,7 @@ export default {
         async getMenus(){
             const res=await this.axios.get('menus');
             this.menus=res.data.data;
-            console.log(this.menus)
+            // console.log(this.menus)
         },
         signOut() {
             localStorage.removeItem('token');

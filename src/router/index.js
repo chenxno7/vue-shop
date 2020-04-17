@@ -6,6 +6,7 @@ import Users from '@/components/Users/Users.vue'
 import Rights from '@/components/Rights/Rights.vue'
 import SetRole from '@/components/Rights/SetRole'
 import Goods from '@/components/goods/goods'
+import GoodsAdd from '@/components/goods/goodsAdd'
 import Categories from '@/components/goods/categories'
 import Params from '@/components/goods/params'
 import { Message } from 'element-ui'
@@ -22,6 +23,7 @@ Vue.use(VueRouter)
       {name:"rights",path:'/rights',component:Rights},
       {name:"roles",path:'/roles',component:SetRole},
       {name:"goods",path:'/goods',component:Goods},
+      {name:"goodsadd",path:'/goodsadd',component:GoodsAdd},
       {name:"params",path:'/params',component:Params},
       {name:"categories",path:'/categories',component:Categories},
     ]
