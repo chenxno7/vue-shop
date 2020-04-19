@@ -127,8 +127,6 @@ export default {
                     if (res.data.data.length > 0) {
                         this.attrParams.forEach(item => {
                             item.attr_vals = item.attr_vals.split(',')
-                            // this.checkList = this.checkList.concat(item.val_array)
-                            // console.log(item)
                         })
                     }
                     // console.log(this.attrParams)
