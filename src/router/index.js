@@ -9,6 +9,7 @@ import Goods from '@/components/goods/goods'
 import GoodsAdd from '@/components/goods/goodsAdd'
 import Categories from '@/components/goods/categories'
 import Params from '@/components/goods/params'
+import Orders from '@/components/orders/orders'
 import { Message } from 'element-ui'
 
 Vue.use(VueRouter)
@@ -26,6 +27,7 @@ Vue.use(VueRouter)
       {name:"goodsadd",path:'/goodsadd',component:GoodsAdd},
       {name:"params",path:'/params',component:Params},
       {name:"categories",path:'/categories',component:Categories},
+      {name:"orders",path:'/orders',component:Orders},
     ]
   },
   {

@@ -38,7 +38,7 @@ Axios.interceptors.request.use(config=>{
 })
 Axios.interceptors.response.use(
   res=>{
-    console.log("触发响应拦截器...")
+    // console.log("触发响应拦截器...")
     // console.log(res)
     if(res.data.meta.status==403){
       localStorage.removeItem("token");
@@ -51,7 +51,7 @@ Axios.interceptors.response.use(
       alert(res.data.meta.msg+" 请先登录 !");
     }else if(res.data.data){
       if(res.data.data.token){
-      console.log('token拿到了')
+      // console.log('token拿到了')
       store.commit("setUname",res.data.data.username);
       store.commit("setIslogin",true);
       // if(res.data.remember){
