@@ -10,6 +10,7 @@ import GoodsAdd from '@/components/goods/goodsAdd'
 import Categories from '@/components/goods/categories'
 import Params from '@/components/goods/params'
 import Orders from '@/components/orders/orders'
+import Reports from '@/components/reports/reports'
 import { Message } from 'element-ui'
 
 Vue.use(VueRouter)
@@ -28,6 +29,7 @@ Vue.use(VueRouter)
       {name:"params",path:'/params',component:Params},
       {name:"categories",path:'/categories',component:Categories},
       {name:"orders",path:'/orders',component:Orders},
+      {name:"reports",path:'/reports',component:Reports},
     ]
   },
   {
