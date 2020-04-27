@@ -1,19 +1,42 @@
-# vue-pro
+# `shop-Vue`
 
-## Project setup
-```
-npm install
-```
+## 简介
+本项目主要利用`vue-cli`以及`ElementUi`开发一款商城后台管理系统。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### 功能
+- ##### 登录跳转
 
-### Compiles and minifies for production
-```
-npm run build
-```
+  不同角色的用户登录后后端返回相对应的功能菜单，即对应权限
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- ##### 用户管理
+
+  对用户的增删改查，角色设定
+
+- ##### 权限管理
+
+  角色管理模块：角色的添加，修改以及删除
+
+  权限列表：将后端数据以table形式展示
+
+- ##### 商品管理
+
+  商品列表模块：商品的增删改查
+
+  商品分类模块：分类的添加以及参数修改
+
+  分类参数模块：参数内容的修改，分为静态参数和动态参数
+
+- ##### 订单管理
+
+  订单的增删改查
+
+- ##### 数据分析
+
+  将后端返回的数据以图表形式展示
+
+### 技术栈
+
+1. `Vue-cli`快速构建项目目录
+2. `ElementUI`快速搭建前端页面
+3. `axios`发送请求获取数据
+4. `ECharts`导入折线图，将数据直观地展示出来
